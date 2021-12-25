@@ -12,7 +12,7 @@ public class Program
             .ConfigureServices(services =>
             {
                 services.AddHttpClient();
-                services.AddScoped<YearNotificationScraper>();
+                services.AddScoped<BoosterYearProcessor>();
             })
             .Build();
 
