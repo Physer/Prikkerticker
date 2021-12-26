@@ -65,7 +65,7 @@ public class BoosterYearProcessor
                 if (boosterTweetMatch?.Success == false)
                     continue;
 
-                if(int.TryParse(boosterTweetMatch.Value, out var year))
+                if(int.TryParse(boosterTweetMatch!.Value, out var year))
                     years.Add(year);
             }
             return new(years, tweet.CreatedAt);
