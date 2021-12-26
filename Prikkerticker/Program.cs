@@ -24,6 +24,7 @@ public class Program
 
                 // Application services
                 services.AddScoped<BoosterYearProcessor>();
+                services.AddScoped<StorageService>();
             })
             .Build();
 
