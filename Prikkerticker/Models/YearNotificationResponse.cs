@@ -1,17 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace Prikkerticker.Models
+﻿namespace Prikkerticker.Models
 {
     public class YearNotificationResponse
     {
         public bool Success { get; set; }
+        public YearNotification? YearNotification { get; set; }
 
-        public IEnumerable<string>? Years { get; set; }
-
-        public YearNotificationResponse(IEnumerable<string> years)
+        public YearNotificationResponse(YearNotification? yearNotification)
         {
+            YearNotification = yearNotification;
             Success = true;
-            Years = years;
         }
 
         public YearNotificationResponse()

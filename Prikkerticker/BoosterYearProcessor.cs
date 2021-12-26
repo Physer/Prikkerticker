@@ -38,17 +38,17 @@ public class BoosterYearProcessor
         if (twitterData is null || twitterData?.Data?.Any() == false)
             return new();
 
-        var boosterYears = GetBoosterYearsFromTweets(twitterData?.Data);
-        if (boosterYears is null)
+        var boosterYearNotification = GetLatestBoosterTweet(twitterData?.Data);
+        if (boosterYearNotification is null)
             return new();
 
-        return new(boosterYears);
+        return new(boosterYearNotification);
     }
 
-    private IEnumerable<string>? GetBoosterYearsFromTweets(IEnumerable<Tweet>? tweets)
+    private YearNotification? GetLatestBoosterTweet(IEnumerable<Tweet>? tweets)
     {
         if (tweets is null)
-            yield break;
+            return null;
 
         foreach (var tweet in tweets)
         {
@@ -59,14 +59,17 @@ public class BoosterYearProcessor
                 continue;
 
             var boosterTweetsMatches = Regex.Matches(tweet.Text, "\\d{4}").ToList();
+            List<int> years = new();
             foreach (var boosterTweetMatch in boosterTweetsMatches)
             {
                 if (boosterTweetMatch?.Success == false)
                     continue;
 
-                yield return boosterTweetMatch.Value;
+                if(int.TryParse(boosterTweetMatch.Value, out var year))
+                    years.Add(year);
             }
+            return new(years, tweet.CreatedAt);
         }
-        yield break;
+        return null;
     }
 }
