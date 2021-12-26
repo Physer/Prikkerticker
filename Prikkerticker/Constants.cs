@@ -10,4 +10,14 @@ public static class Constants
         public const string TwitterBearerToken = nameof(TwitterBearerToken);
         public const string TwitterUsernameToScrape = nameof(TwitterUsernameToScrape);
     }
+
+    public static class ConnectionStringKeys
+    {
+        public const string PrikkerTickerAzureTableApi = nameof(PrikkerTickerAzureTableApi);
+    }
+
+    public static class AzureTableApi
+    {
+        public const string TableName = "yearnotifications";
+    }
 }
